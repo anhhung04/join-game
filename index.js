@@ -11,10 +11,11 @@ const client = new Client({ intents: [
   ]
 }); 
 require('dotenv').config();
+const token = process.env.TOKEN;
 
 client.on('voiceStateUpdate',async (oldState, newState) =>{
   const hostMember = newState.member;
-  const channelSend = await newState.guild.channels.cache.get('882277611743625216');
+  const channelSend = await newState.guild.channels.cache.get('927207463898472478');
 
   if(oldState.channel !== null){
     const oldMessage = await channelSend.messages.cache.find(message => message.content.split(/\s+/g)[1]+' '+message.content.split(/\s+/g)[2]===oldState.channel.name);
@@ -109,8 +110,7 @@ client.on('voiceStateUpdate',async (oldState, newState) =>{
   .setTitle(`Bấm để tham gia (${index}/5)`)
   .setURL(`${invite}`)
 
-  const sendChannel = await newChannel.guild.channels.cache.get('882277611743625216');
-  return sendChannel.send({
+  return channelSend.send({
       content: `${hostMember.user} ${newChannel.name}`,
       embeds: [embed]
   });
