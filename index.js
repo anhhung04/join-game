@@ -13,8 +13,6 @@ const client = new Client({ intents: [
 require('dotenv').config();
 const token = process.env.TOKEN;
 
-const token = process.env.TOKEN
-
 client.on('voiceStateUpdate',async (oldState, newState) =>{
   const hostMember = newState.member;
   const channelSend = await newState.guild.channels.cache.get('927207463898472478');
